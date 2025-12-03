@@ -84,7 +84,7 @@ Initial attempts at fully automatic bytecode instrumentation for switch statemen
 **Domain Constraint** (limits solver search space):
 ```
 0 <= user_choice < 5
-
+```
 **Path Constraint** (records execution):
 ```
 user_choice == 0
