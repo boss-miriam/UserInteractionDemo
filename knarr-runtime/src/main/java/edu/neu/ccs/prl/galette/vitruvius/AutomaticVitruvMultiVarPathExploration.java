@@ -121,7 +121,6 @@ public class AutomaticVitruvMultiVarPathExploration {
                 System.out.println("  Symbolic expression: " + symbolicExpr1);
             }
         } else {
-
             System.out.println("No tag found for input 1");
         }
 
@@ -141,14 +140,25 @@ public class AutomaticVitruvMultiVarPathExploration {
             System.out.println("No tag found for input 2");
         }
 
+        // Fallback names in case tagging failed, to avoid empty constraint variables
+        if (varName1.isEmpty()) {
+            varName1 = "user_choice_1";
+        }
+        if (varName2.isEmpty()) {
+            varName2 = "user_choice_2";
+        }
+
         // Extract concrete values for display/directory naming
         int input1 = taggedInput1.intValue();
         int input2 = taggedInput2.intValue();
 
-        // Create unique working directory for this path
+        // Create unique working directory for this path, cleaning any stale outputs to avoid proxy issues
         Path workDir = Paths.get("galette-output-multivar-" + input1 + "_" + input2);
 
         try {
+            if (Files.exists(workDir)) {
+                deleteDirectory(workDir);
+            }
             Files.createDirectories(workDir);
         } catch (IOException e) {
             System.err.println("Warning: Could not create working directory: " + e.getMessage());
@@ -159,8 +169,9 @@ public class AutomaticVitruvMultiVarPathExploration {
 
         // Step 1: Add domain constraints for BOTH variables
 
-        PathUtils.addIntDomainConstraint(varName1, 0, 5);
-        PathUtils.addIntDomainConstraint(varName2, 0, 5);
+        // Limit to five choices (0-4) to avoid solver producing invalid/min-value cases
+        PathUtils.addIntDomainConstraint(varName1, 0, 4);
+        PathUtils.addIntDomainConstraint(varName2, 0, 4);
 
         // Step 2: Record path constraints for BOTH variables
 

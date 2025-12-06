@@ -1,14 +1,707 @@
 {
-  "total_paths": 1,
+  "total_paths": 100,
   "num_variables": 2,
   "variable_names": ["user_choice_1", "user_choice_2"],
   "paths": [
     {
       "path_id": 0,
       "inputs": {"user_choice_1": 0, "user_choice_2": 0},
-      "constraints": ["(0<=)&&(<5)", "(0<=)&&(<5)", "==0", "==0"],
+      "constraints": ["(0<=user_choice_1_iter0)&&(user_choice_1_iter0<4)", "(0<=user_choice_2_iter0)&&(user_choice_2_iter0<4)", "user_choice_1_iter0==0", "user_choice_2_iter0==0"],
       "num_constraints": 4,
-      "execution_time_ms": 2611
+      "execution_time_ms": 127407
+    },
+    {
+      "path_id": 1,
+      "inputs": {"user_choice_1": 0, "user_choice_2": 1},
+      "constraints": ["(0<=user_choice_1_iter1)&&(user_choice_1_iter1<4)", "(0<=user_choice_2_iter1)&&(user_choice_2_iter1<4)", "user_choice_1_iter1==0", "user_choice_2_iter1==1"],
+      "num_constraints": 4,
+      "execution_time_ms": 607
+    },
+    {
+      "path_id": 2,
+      "inputs": {"user_choice_1": 0, "user_choice_2": 1},
+      "constraints": ["(0<=user_choice_1_iter2)&&(user_choice_1_iter2<4)", "(0<=user_choice_2_iter2)&&(user_choice_2_iter2<4)", "user_choice_1_iter2==0", "user_choice_2_iter2==1"],
+      "num_constraints": 4,
+      "execution_time_ms": 281
+    },
+    {
+      "path_id": 3,
+      "inputs": {"user_choice_1": 0, "user_choice_2": 1},
+      "constraints": ["(0<=user_choice_1_iter3)&&(user_choice_1_iter3<4)", "(0<=user_choice_2_iter3)&&(user_choice_2_iter3<4)", "user_choice_1_iter3==0", "user_choice_2_iter3==1"],
+      "num_constraints": 4,
+      "execution_time_ms": 311
+    },
+    {
+      "path_id": 4,
+      "inputs": {"user_choice_1": 0, "user_choice_2": 1},
+      "constraints": ["(0<=user_choice_1_iter4)&&(user_choice_1_iter4<4)", "(0<=user_choice_2_iter4)&&(user_choice_2_iter4<4)", "user_choice_1_iter4==0", "user_choice_2_iter4==1"],
+      "num_constraints": 4,
+      "execution_time_ms": 265
+    },
+    {
+      "path_id": 5,
+      "inputs": {"user_choice_1": 0, "user_choice_2": 1},
+      "constraints": ["(0<=user_choice_1_iter5)&&(user_choice_1_iter5<4)", "(0<=user_choice_2_iter5)&&(user_choice_2_iter5<4)", "user_choice_1_iter5==0", "user_choice_2_iter5==1"],
+      "num_constraints": 4,
+      "execution_time_ms": 266
+    },
+    {
+      "path_id": 6,
+      "inputs": {"user_choice_1": 0, "user_choice_2": 1},
+      "constraints": ["(0<=user_choice_1_iter6)&&(user_choice_1_iter6<4)", "(0<=user_choice_2_iter6)&&(user_choice_2_iter6<4)", "user_choice_1_iter6==0", "user_choice_2_iter6==1"],
+      "num_constraints": 4,
+      "execution_time_ms": 277
+    },
+    {
+      "path_id": 7,
+      "inputs": {"user_choice_1": 0, "user_choice_2": 1},
+      "constraints": ["(0<=user_choice_1_iter7)&&(user_choice_1_iter7<4)", "(0<=user_choice_2_iter7)&&(user_choice_2_iter7<4)", "user_choice_1_iter7==0", "user_choice_2_iter7==1"],
+      "num_constraints": 4,
+      "execution_time_ms": 485
+    },
+    {
+      "path_id": 8,
+      "inputs": {"user_choice_1": 0, "user_choice_2": -2147483648},
+      "constraints": ["(0<=user_choice_1_iter8)&&(user_choice_1_iter8<4)", "(0<=user_choice_2_iter8)&&(user_choice_2_iter8<4)", "user_choice_1_iter8==0", "user_choice_2_iter8==-2147483648"],
+      "num_constraints": 4,
+      "execution_time_ms": 1174
+    },
+    {
+      "path_id": 9,
+      "inputs": {"user_choice_1": 0, "user_choice_2": -2147483648},
+      "constraints": ["(0<=user_choice_1_iter9)&&(user_choice_1_iter9<4)", "(0<=user_choice_2_iter9)&&(user_choice_2_iter9<4)", "user_choice_1_iter9==0", "user_choice_2_iter9==-2147483648"],
+      "num_constraints": 4,
+      "execution_time_ms": 392
+    },
+    {
+      "path_id": 10,
+      "inputs": {"user_choice_1": 0, "user_choice_2": -2147483648},
+      "constraints": ["(0<=user_choice_1_iter10)&&(user_choice_1_iter10<4)", "(0<=user_choice_2_iter10)&&(user_choice_2_iter10<4)", "user_choice_1_iter10==0", "user_choice_2_iter10==-2147483648"],
+      "num_constraints": 4,
+      "execution_time_ms": 403
+    },
+    {
+      "path_id": 11,
+      "inputs": {"user_choice_1": 0, "user_choice_2": -2147483648},
+      "constraints": ["(0<=user_choice_1_iter11)&&(user_choice_1_iter11<4)", "(0<=user_choice_2_iter11)&&(user_choice_2_iter11<4)", "user_choice_1_iter11==0", "user_choice_2_iter11==-2147483648"],
+      "num_constraints": 4,
+      "execution_time_ms": 331
+    },
+    {
+      "path_id": 12,
+      "inputs": {"user_choice_1": 0, "user_choice_2": -2147483647},
+      "constraints": ["(0<=user_choice_1_iter12)&&(user_choice_1_iter12<4)", "(0<=user_choice_2_iter12)&&(user_choice_2_iter12<4)", "user_choice_1_iter12==0", "user_choice_2_iter12==-2147483647"],
+      "num_constraints": 4,
+      "execution_time_ms": 321
+    },
+    {
+      "path_id": 13,
+      "inputs": {"user_choice_1": 0, "user_choice_2": -2147483647},
+      "constraints": ["(0<=user_choice_1_iter13)&&(user_choice_1_iter13<4)", "(0<=user_choice_2_iter13)&&(user_choice_2_iter13<4)", "user_choice_1_iter13==0", "user_choice_2_iter13==-2147483647"],
+      "num_constraints": 4,
+      "execution_time_ms": 340
+    },
+    {
+      "path_id": 14,
+      "inputs": {"user_choice_1": 0, "user_choice_2": -2147483647},
+      "constraints": ["(0<=user_choice_1_iter14)&&(user_choice_1_iter14<4)", "(0<=user_choice_2_iter14)&&(user_choice_2_iter14<4)", "user_choice_1_iter14==0", "user_choice_2_iter14==-2147483647"],
+      "num_constraints": 4,
+      "execution_time_ms": 385
+    },
+    {
+      "path_id": 15,
+      "inputs": {"user_choice_1": 0, "user_choice_2": -2147483647},
+      "constraints": ["(0<=user_choice_1_iter15)&&(user_choice_1_iter15<4)", "(0<=user_choice_2_iter15)&&(user_choice_2_iter15<4)", "user_choice_1_iter15==0", "user_choice_2_iter15==-2147483647"],
+      "num_constraints": 4,
+      "execution_time_ms": 601
+    },
+    {
+      "path_id": 16,
+      "inputs": {"user_choice_1": 0, "user_choice_2": -2147483647},
+      "constraints": ["(0<=user_choice_1_iter16)&&(user_choice_1_iter16<4)", "(0<=user_choice_2_iter16)&&(user_choice_2_iter16<4)", "user_choice_1_iter16==0", "user_choice_2_iter16==-2147483647"],
+      "num_constraints": 4,
+      "execution_time_ms": 353
+    },
+    {
+      "path_id": 17,
+      "inputs": {"user_choice_1": 0, "user_choice_2": -2147483647},
+      "constraints": ["(0<=user_choice_1_iter17)&&(user_choice_1_iter17<4)", "(0<=user_choice_2_iter17)&&(user_choice_2_iter17<4)", "user_choice_1_iter17==0", "user_choice_2_iter17==-2147483647"],
+      "num_constraints": 4,
+      "execution_time_ms": 319
+    },
+    {
+      "path_id": 18,
+      "inputs": {"user_choice_1": 0, "user_choice_2": -2147483647},
+      "constraints": ["(0<=user_choice_1_iter18)&&(user_choice_1_iter18<4)", "(0<=user_choice_2_iter18)&&(user_choice_2_iter18<4)", "user_choice_1_iter18==0", "user_choice_2_iter18==-2147483647"],
+      "num_constraints": 4,
+      "execution_time_ms": 300
+    },
+    {
+      "path_id": 19,
+      "inputs": {"user_choice_1": 0, "user_choice_2": -2147483647},
+      "constraints": ["(0<=user_choice_1_iter19)&&(user_choice_1_iter19<4)", "(0<=user_choice_2_iter19)&&(user_choice_2_iter19<4)", "user_choice_1_iter19==0", "user_choice_2_iter19==-2147483647"],
+      "num_constraints": 4,
+      "execution_time_ms": 341
+    },
+    {
+      "path_id": 20,
+      "inputs": {"user_choice_1": 0, "user_choice_2": -2147483647},
+      "constraints": ["(0<=user_choice_1_iter20)&&(user_choice_1_iter20<4)", "(0<=user_choice_2_iter20)&&(user_choice_2_iter20<4)", "user_choice_1_iter20==0", "user_choice_2_iter20==-2147483647"],
+      "num_constraints": 4,
+      "execution_time_ms": 321
+    },
+    {
+      "path_id": 21,
+      "inputs": {"user_choice_1": 0, "user_choice_2": -2147483647},
+      "constraints": ["(0<=user_choice_1_iter21)&&(user_choice_1_iter21<4)", "(0<=user_choice_2_iter21)&&(user_choice_2_iter21<4)", "user_choice_1_iter21==0", "user_choice_2_iter21==-2147483647"],
+      "num_constraints": 4,
+      "execution_time_ms": 357
+    },
+    {
+      "path_id": 22,
+      "inputs": {"user_choice_1": 0, "user_choice_2": -2147483647},
+      "constraints": ["(0<=user_choice_1_iter22)&&(user_choice_1_iter22<4)", "(0<=user_choice_2_iter22)&&(user_choice_2_iter22<4)", "user_choice_1_iter22==0", "user_choice_2_iter22==-2147483647"],
+      "num_constraints": 4,
+      "execution_time_ms": 301
+    },
+    {
+      "path_id": 23,
+      "inputs": {"user_choice_1": 0, "user_choice_2": -2147483648},
+      "constraints": ["(0<=user_choice_1_iter23)&&(user_choice_1_iter23<4)", "(0<=user_choice_2_iter23)&&(user_choice_2_iter23<4)", "user_choice_1_iter23==0", "user_choice_2_iter23==-2147483648"],
+      "num_constraints": 4,
+      "execution_time_ms": 360
+    },
+    {
+      "path_id": 24,
+      "inputs": {"user_choice_1": 0, "user_choice_2": -2147483648},
+      "constraints": ["(0<=user_choice_1_iter24)&&(user_choice_1_iter24<4)", "(0<=user_choice_2_iter24)&&(user_choice_2_iter24<4)", "user_choice_1_iter24==0", "user_choice_2_iter24==-2147483648"],
+      "num_constraints": 4,
+      "execution_time_ms": 355
+    },
+    {
+      "path_id": 25,
+      "inputs": {"user_choice_1": 0, "user_choice_2": -2147483648},
+      "constraints": ["(0<=user_choice_1_iter25)&&(user_choice_1_iter25<4)", "(0<=user_choice_2_iter25)&&(user_choice_2_iter25<4)", "user_choice_1_iter25==0", "user_choice_2_iter25==-2147483648"],
+      "num_constraints": 4,
+      "execution_time_ms": 503
+    },
+    {
+      "path_id": 26,
+      "inputs": {"user_choice_1": 0, "user_choice_2": -2147483648},
+      "constraints": ["(0<=user_choice_1_iter26)&&(user_choice_1_iter26<4)", "(0<=user_choice_2_iter26)&&(user_choice_2_iter26<4)", "user_choice_1_iter26==0", "user_choice_2_iter26==-2147483648"],
+      "num_constraints": 4,
+      "execution_time_ms": 362
+    },
+    {
+      "path_id": 27,
+      "inputs": {"user_choice_1": 0, "user_choice_2": -2147483648},
+      "constraints": ["(0<=user_choice_1_iter27)&&(user_choice_1_iter27<4)", "(0<=user_choice_2_iter27)&&(user_choice_2_iter27<4)", "user_choice_1_iter27==0", "user_choice_2_iter27==-2147483648"],
+      "num_constraints": 4,
+      "execution_time_ms": 847
+    },
+    {
+      "path_id": 28,
+      "inputs": {"user_choice_1": 0, "user_choice_2": -2147483648},
+      "constraints": ["(0<=user_choice_1_iter28)&&(user_choice_1_iter28<4)", "(0<=user_choice_2_iter28)&&(user_choice_2_iter28<4)", "user_choice_1_iter28==0", "user_choice_2_iter28==-2147483648"],
+      "num_constraints": 4,
+      "execution_time_ms": 712
+    },
+    {
+      "path_id": 29,
+      "inputs": {"user_choice_1": 0, "user_choice_2": -2147483648},
+      "constraints": ["(0<=user_choice_1_iter29)&&(user_choice_1_iter29<4)", "(0<=user_choice_2_iter29)&&(user_choice_2_iter29<4)", "user_choice_1_iter29==0", "user_choice_2_iter29==-2147483648"],
+      "num_constraints": 4,
+      "execution_time_ms": 895
+    },
+    {
+      "path_id": 30,
+      "inputs": {"user_choice_1": 0, "user_choice_2": -2147483648},
+      "constraints": ["(0<=user_choice_1_iter30)&&(user_choice_1_iter30<4)", "(0<=user_choice_2_iter30)&&(user_choice_2_iter30<4)", "user_choice_1_iter30==0", "user_choice_2_iter30==-2147483648"],
+      "num_constraints": 4,
+      "execution_time_ms": 573
+    },
+    {
+      "path_id": 31,
+      "inputs": {"user_choice_1": 0, "user_choice_2": -2147483648},
+      "constraints": ["(0<=user_choice_1_iter31)&&(user_choice_1_iter31<4)", "(0<=user_choice_2_iter31)&&(user_choice_2_iter31<4)", "user_choice_1_iter31==0", "user_choice_2_iter31==-2147483648"],
+      "num_constraints": 4,
+      "execution_time_ms": 937
+    },
+    {
+      "path_id": 32,
+      "inputs": {"user_choice_1": 0, "user_choice_2": -2147483648},
+      "constraints": ["(0<=user_choice_1_iter32)&&(user_choice_1_iter32<4)", "(0<=user_choice_2_iter32)&&(user_choice_2_iter32<4)", "user_choice_1_iter32==0", "user_choice_2_iter32==-2147483648"],
+      "num_constraints": 4,
+      "execution_time_ms": 540
+    },
+    {
+      "path_id": 33,
+      "inputs": {"user_choice_1": 0, "user_choice_2": -2147483648},
+      "constraints": ["(0<=user_choice_1_iter33)&&(user_choice_1_iter33<4)", "(0<=user_choice_2_iter33)&&(user_choice_2_iter33<4)", "user_choice_1_iter33==0", "user_choice_2_iter33==-2147483648"],
+      "num_constraints": 4,
+      "execution_time_ms": 660
+    },
+    {
+      "path_id": 34,
+      "inputs": {"user_choice_1": 0, "user_choice_2": -2147483648},
+      "constraints": ["(0<=user_choice_1_iter34)&&(user_choice_1_iter34<4)", "(0<=user_choice_2_iter34)&&(user_choice_2_iter34<4)", "user_choice_1_iter34==0", "user_choice_2_iter34==-2147483648"],
+      "num_constraints": 4,
+      "execution_time_ms": 1146
+    },
+    {
+      "path_id": 35,
+      "inputs": {"user_choice_1": 0, "user_choice_2": -2147483648},
+      "constraints": ["(0<=user_choice_1_iter35)&&(user_choice_1_iter35<4)", "(0<=user_choice_2_iter35)&&(user_choice_2_iter35<4)", "user_choice_1_iter35==0", "user_choice_2_iter35==-2147483648"],
+      "num_constraints": 4,
+      "execution_time_ms": 538
+    },
+    {
+      "path_id": 36,
+      "inputs": {"user_choice_1": 0, "user_choice_2": -2147483648},
+      "constraints": ["(0<=user_choice_1_iter36)&&(user_choice_1_iter36<4)", "(0<=user_choice_2_iter36)&&(user_choice_2_iter36<4)", "user_choice_1_iter36==0", "user_choice_2_iter36==-2147483648"],
+      "num_constraints": 4,
+      "execution_time_ms": 1370
+    },
+    {
+      "path_id": 37,
+      "inputs": {"user_choice_1": 0, "user_choice_2": -2147483648},
+      "constraints": ["(0<=user_choice_1_iter37)&&(user_choice_1_iter37<4)", "(0<=user_choice_2_iter37)&&(user_choice_2_iter37<4)", "user_choice_1_iter37==0", "user_choice_2_iter37==-2147483648"],
+      "num_constraints": 4,
+      "execution_time_ms": 890
+    },
+    {
+      "path_id": 38,
+      "inputs": {"user_choice_1": 0, "user_choice_2": -2147483648},
+      "constraints": ["(0<=user_choice_1_iter38)&&(user_choice_1_iter38<4)", "(0<=user_choice_2_iter38)&&(user_choice_2_iter38<4)", "user_choice_1_iter38==0", "user_choice_2_iter38==-2147483648"],
+      "num_constraints": 4,
+      "execution_time_ms": 661
+    },
+    {
+      "path_id": 39,
+      "inputs": {"user_choice_1": 0, "user_choice_2": -2147483648},
+      "constraints": ["(0<=user_choice_1_iter39)&&(user_choice_1_iter39<4)", "(0<=user_choice_2_iter39)&&(user_choice_2_iter39<4)", "user_choice_1_iter39==0", "user_choice_2_iter39==-2147483648"],
+      "num_constraints": 4,
+      "execution_time_ms": 580
+    },
+    {
+      "path_id": 40,
+      "inputs": {"user_choice_1": 0, "user_choice_2": -2147483648},
+      "constraints": ["(0<=user_choice_1_iter40)&&(user_choice_1_iter40<4)", "(0<=user_choice_2_iter40)&&(user_choice_2_iter40<4)", "user_choice_1_iter40==0", "user_choice_2_iter40==-2147483648"],
+      "num_constraints": 4,
+      "execution_time_ms": 457
+    },
+    {
+      "path_id": 41,
+      "inputs": {"user_choice_1": 0, "user_choice_2": -2147483648},
+      "constraints": ["(0<=user_choice_1_iter41)&&(user_choice_1_iter41<4)", "(0<=user_choice_2_iter41)&&(user_choice_2_iter41<4)", "user_choice_1_iter41==0", "user_choice_2_iter41==-2147483648"],
+      "num_constraints": 4,
+      "execution_time_ms": 672
+    },
+    {
+      "path_id": 42,
+      "inputs": {"user_choice_1": 0, "user_choice_2": -2147483648},
+      "constraints": ["(0<=user_choice_1_iter42)&&(user_choice_1_iter42<4)", "(0<=user_choice_2_iter42)&&(user_choice_2_iter42<4)", "user_choice_1_iter42==0", "user_choice_2_iter42==-2147483648"],
+      "num_constraints": 4,
+      "execution_time_ms": 1248
+    },
+    {
+      "path_id": 43,
+      "inputs": {"user_choice_1": 0, "user_choice_2": -2147483648},
+      "constraints": ["(0<=user_choice_1_iter43)&&(user_choice_1_iter43<4)", "(0<=user_choice_2_iter43)&&(user_choice_2_iter43<4)", "user_choice_1_iter43==0", "user_choice_2_iter43==-2147483648"],
+      "num_constraints": 4,
+      "execution_time_ms": 1063
+    },
+    {
+      "path_id": 44,
+      "inputs": {"user_choice_1": 0, "user_choice_2": -2147483648},
+      "constraints": ["(0<=user_choice_1_iter44)&&(user_choice_1_iter44<4)", "(0<=user_choice_2_iter44)&&(user_choice_2_iter44<4)", "user_choice_1_iter44==0", "user_choice_2_iter44==-2147483648"],
+      "num_constraints": 4,
+      "execution_time_ms": 781
+    },
+    {
+      "path_id": 45,
+      "inputs": {"user_choice_1": 0, "user_choice_2": -2147483647},
+      "constraints": ["(0<=user_choice_1_iter45)&&(user_choice_1_iter45<4)", "(0<=user_choice_2_iter45)&&(user_choice_2_iter45<4)", "user_choice_1_iter45==0", "user_choice_2_iter45==-2147483647"],
+      "num_constraints": 4,
+      "execution_time_ms": 578
+    },
+    {
+      "path_id": 46,
+      "inputs": {"user_choice_1": 0, "user_choice_2": -2147483647},
+      "constraints": ["(0<=user_choice_1_iter46)&&(user_choice_1_iter46<4)", "(0<=user_choice_2_iter46)&&(user_choice_2_iter46<4)", "user_choice_1_iter46==0", "user_choice_2_iter46==-2147483647"],
+      "num_constraints": 4,
+      "execution_time_ms": 449
+    },
+    {
+      "path_id": 47,
+      "inputs": {"user_choice_1": 0, "user_choice_2": -2147483647},
+      "constraints": ["(0<=user_choice_1_iter47)&&(user_choice_1_iter47<4)", "(0<=user_choice_2_iter47)&&(user_choice_2_iter47<4)", "user_choice_1_iter47==0", "user_choice_2_iter47==-2147483647"],
+      "num_constraints": 4,
+      "execution_time_ms": 479
+    },
+    {
+      "path_id": 48,
+      "inputs": {"user_choice_1": 0, "user_choice_2": -2147483648},
+      "constraints": ["(0<=user_choice_1_iter48)&&(user_choice_1_iter48<4)", "(0<=user_choice_2_iter48)&&(user_choice_2_iter48<4)", "user_choice_1_iter48==0", "user_choice_2_iter48==-2147483648"],
+      "num_constraints": 4,
+      "execution_time_ms": 342
+    },
+    {
+      "path_id": 49,
+      "inputs": {"user_choice_1": 0, "user_choice_2": -2147483648},
+      "constraints": ["(0<=user_choice_1_iter49)&&(user_choice_1_iter49<4)", "(0<=user_choice_2_iter49)&&(user_choice_2_iter49<4)", "user_choice_1_iter49==0", "user_choice_2_iter49==-2147483648"],
+      "num_constraints": 4,
+      "execution_time_ms": 252
+    },
+    {
+      "path_id": 50,
+      "inputs": {"user_choice_1": 0, "user_choice_2": -2147483648},
+      "constraints": ["(0<=user_choice_1_iter50)&&(user_choice_1_iter50<4)", "(0<=user_choice_2_iter50)&&(user_choice_2_iter50<4)", "user_choice_1_iter50==0", "user_choice_2_iter50==-2147483648"],
+      "num_constraints": 4,
+      "execution_time_ms": 283
+    },
+    {
+      "path_id": 51,
+      "inputs": {"user_choice_1": 0, "user_choice_2": -2147483648},
+      "constraints": ["(0<=user_choice_1_iter51)&&(user_choice_1_iter51<4)", "(0<=user_choice_2_iter51)&&(user_choice_2_iter51<4)", "user_choice_1_iter51==0", "user_choice_2_iter51==-2147483648"],
+      "num_constraints": 4,
+      "execution_time_ms": 331
+    },
+    {
+      "path_id": 52,
+      "inputs": {"user_choice_1": 0, "user_choice_2": -2147483648},
+      "constraints": ["(0<=user_choice_1_iter52)&&(user_choice_1_iter52<4)", "(0<=user_choice_2_iter52)&&(user_choice_2_iter52<4)", "user_choice_1_iter52==0", "user_choice_2_iter52==-2147483648"],
+      "num_constraints": 4,
+      "execution_time_ms": 185
+    },
+    {
+      "path_id": 53,
+      "inputs": {"user_choice_1": 0, "user_choice_2": -2147483648},
+      "constraints": ["(0<=user_choice_1_iter53)&&(user_choice_1_iter53<4)", "(0<=user_choice_2_iter53)&&(user_choice_2_iter53<4)", "user_choice_1_iter53==0", "user_choice_2_iter53==-2147483648"],
+      "num_constraints": 4,
+      "execution_time_ms": 217
+    },
+    {
+      "path_id": 54,
+      "inputs": {"user_choice_1": 0, "user_choice_2": -2147483648},
+      "constraints": ["(0<=user_choice_1_iter54)&&(user_choice_1_iter54<4)", "(0<=user_choice_2_iter54)&&(user_choice_2_iter54<4)", "user_choice_1_iter54==0", "user_choice_2_iter54==-2147483648"],
+      "num_constraints": 4,
+      "execution_time_ms": 225
+    },
+    {
+      "path_id": 55,
+      "inputs": {"user_choice_1": 0, "user_choice_2": -2147483648},
+      "constraints": ["(0<=user_choice_1_iter55)&&(user_choice_1_iter55<4)", "(0<=user_choice_2_iter55)&&(user_choice_2_iter55<4)", "user_choice_1_iter55==0", "user_choice_2_iter55==-2147483648"],
+      "num_constraints": 4,
+      "execution_time_ms": 220
+    },
+    {
+      "path_id": 56,
+      "inputs": {"user_choice_1": 0, "user_choice_2": -2147483648},
+      "constraints": ["(0<=user_choice_1_iter56)&&(user_choice_1_iter56<4)", "(0<=user_choice_2_iter56)&&(user_choice_2_iter56<4)", "user_choice_1_iter56==0", "user_choice_2_iter56==-2147483648"],
+      "num_constraints": 4,
+      "execution_time_ms": 180
+    },
+    {
+      "path_id": 57,
+      "inputs": {"user_choice_1": 0, "user_choice_2": -2147483648},
+      "constraints": ["(0<=user_choice_1_iter57)&&(user_choice_1_iter57<4)", "(0<=user_choice_2_iter57)&&(user_choice_2_iter57<4)", "user_choice_1_iter57==0", "user_choice_2_iter57==-2147483648"],
+      "num_constraints": 4,
+      "execution_time_ms": 256
+    },
+    {
+      "path_id": 58,
+      "inputs": {"user_choice_1": 0, "user_choice_2": -2147483648},
+      "constraints": ["(0<=user_choice_1_iter58)&&(user_choice_1_iter58<4)", "(0<=user_choice_2_iter58)&&(user_choice_2_iter58<4)", "user_choice_1_iter58==0", "user_choice_2_iter58==-2147483648"],
+      "num_constraints": 4,
+      "execution_time_ms": 225
+    },
+    {
+      "path_id": 59,
+      "inputs": {"user_choice_1": 0, "user_choice_2": -2147483648},
+      "constraints": ["(0<=user_choice_1_iter59)&&(user_choice_1_iter59<4)", "(0<=user_choice_2_iter59)&&(user_choice_2_iter59<4)", "user_choice_1_iter59==0", "user_choice_2_iter59==-2147483648"],
+      "num_constraints": 4,
+      "execution_time_ms": 224
+    },
+    {
+      "path_id": 60,
+      "inputs": {"user_choice_1": 0, "user_choice_2": -2147483648},
+      "constraints": ["(0<=user_choice_1_iter60)&&(user_choice_1_iter60<4)", "(0<=user_choice_2_iter60)&&(user_choice_2_iter60<4)", "user_choice_1_iter60==0", "user_choice_2_iter60==-2147483648"],
+      "num_constraints": 4,
+      "execution_time_ms": 246
+    },
+    {
+      "path_id": 61,
+      "inputs": {"user_choice_1": 0, "user_choice_2": -2147483648},
+      "constraints": ["(0<=user_choice_1_iter61)&&(user_choice_1_iter61<4)", "(0<=user_choice_2_iter61)&&(user_choice_2_iter61<4)", "user_choice_1_iter61==0", "user_choice_2_iter61==-2147483648"],
+      "num_constraints": 4,
+      "execution_time_ms": 244
+    },
+    {
+      "path_id": 62,
+      "inputs": {"user_choice_1": 0, "user_choice_2": -2147483648},
+      "constraints": ["(0<=user_choice_1_iter62)&&(user_choice_1_iter62<4)", "(0<=user_choice_2_iter62)&&(user_choice_2_iter62<4)", "user_choice_1_iter62==0", "user_choice_2_iter62==-2147483648"],
+      "num_constraints": 4,
+      "execution_time_ms": 270
+    },
+    {
+      "path_id": 63,
+      "inputs": {"user_choice_1": 0, "user_choice_2": -2147483648},
+      "constraints": ["(0<=user_choice_1_iter63)&&(user_choice_1_iter63<4)", "(0<=user_choice_2_iter63)&&(user_choice_2_iter63<4)", "user_choice_1_iter63==0", "user_choice_2_iter63==-2147483648"],
+      "num_constraints": 4,
+      "execution_time_ms": 564
+    },
+    {
+      "path_id": 64,
+      "inputs": {"user_choice_1": 0, "user_choice_2": -2147483648},
+      "constraints": ["(0<=user_choice_1_iter64)&&(user_choice_1_iter64<4)", "(0<=user_choice_2_iter64)&&(user_choice_2_iter64<4)", "user_choice_1_iter64==0", "user_choice_2_iter64==-2147483648"],
+      "num_constraints": 4,
+      "execution_time_ms": 235
+    },
+    {
+      "path_id": 65,
+      "inputs": {"user_choice_1": 0, "user_choice_2": -2147483648},
+      "constraints": ["(0<=user_choice_1_iter65)&&(user_choice_1_iter65<4)", "(0<=user_choice_2_iter65)&&(user_choice_2_iter65<4)", "user_choice_1_iter65==0", "user_choice_2_iter65==-2147483648"],
+      "num_constraints": 4,
+      "execution_time_ms": 207
+    },
+    {
+      "path_id": 66,
+      "inputs": {"user_choice_1": 0, "user_choice_2": -2147483648},
+      "constraints": ["(0<=user_choice_1_iter66)&&(user_choice_1_iter66<4)", "(0<=user_choice_2_iter66)&&(user_choice_2_iter66<4)", "user_choice_1_iter66==0", "user_choice_2_iter66==-2147483648"],
+      "num_constraints": 4,
+      "execution_time_ms": 169
+    },
+    {
+      "path_id": 67,
+      "inputs": {"user_choice_1": 0, "user_choice_2": -2147483647},
+      "constraints": ["(0<=user_choice_1_iter67)&&(user_choice_1_iter67<4)", "(0<=user_choice_2_iter67)&&(user_choice_2_iter67<4)", "user_choice_1_iter67==0", "user_choice_2_iter67==-2147483647"],
+      "num_constraints": 4,
+      "execution_time_ms": 177
+    },
+    {
+      "path_id": 68,
+      "inputs": {"user_choice_1": 0, "user_choice_2": -2147483647},
+      "constraints": ["(0<=user_choice_1_iter68)&&(user_choice_1_iter68<4)", "(0<=user_choice_2_iter68)&&(user_choice_2_iter68<4)", "user_choice_1_iter68==0", "user_choice_2_iter68==-2147483647"],
+      "num_constraints": 4,
+      "execution_time_ms": 202
+    },
+    {
+      "path_id": 69,
+      "inputs": {"user_choice_1": 0, "user_choice_2": -2147483647},
+      "constraints": ["(0<=user_choice_1_iter69)&&(user_choice_1_iter69<4)", "(0<=user_choice_2_iter69)&&(user_choice_2_iter69<4)", "user_choice_1_iter69==0", "user_choice_2_iter69==-2147483647"],
+      "num_constraints": 4,
+      "execution_time_ms": 221
+    },
+    {
+      "path_id": 70,
+      "inputs": {"user_choice_1": 0, "user_choice_2": -2147483647},
+      "constraints": ["(0<=user_choice_1_iter70)&&(user_choice_1_iter70<4)", "(0<=user_choice_2_iter70)&&(user_choice_2_iter70<4)", "user_choice_1_iter70==0", "user_choice_2_iter70==-2147483647"],
+      "num_constraints": 4,
+      "execution_time_ms": 218
+    },
+    {
+      "path_id": 71,
+      "inputs": {"user_choice_1": 0, "user_choice_2": -2147483647},
+      "constraints": ["(0<=user_choice_1_iter71)&&(user_choice_1_iter71<4)", "(0<=user_choice_2_iter71)&&(user_choice_2_iter71<4)", "user_choice_1_iter71==0", "user_choice_2_iter71==-2147483647"],
+      "num_constraints": 4,
+      "execution_time_ms": 262
+    },
+    {
+      "path_id": 72,
+      "inputs": {"user_choice_1": 0, "user_choice_2": -2147483647},
+      "constraints": ["(0<=user_choice_1_iter72)&&(user_choice_1_iter72<4)", "(0<=user_choice_2_iter72)&&(user_choice_2_iter72<4)", "user_choice_1_iter72==0", "user_choice_2_iter72==-2147483647"],
+      "num_constraints": 4,
+      "execution_time_ms": 291
+    },
+    {
+      "path_id": 73,
+      "inputs": {"user_choice_1": 0, "user_choice_2": -2147483647},
+      "constraints": ["(0<=user_choice_1_iter73)&&(user_choice_1_iter73<4)", "(0<=user_choice_2_iter73)&&(user_choice_2_iter73<4)", "user_choice_1_iter73==0", "user_choice_2_iter73==-2147483647"],
+      "num_constraints": 4,
+      "execution_time_ms": 590
+    },
+    {
+      "path_id": 74,
+      "inputs": {"user_choice_1": 0, "user_choice_2": -2147483647},
+      "constraints": ["(0<=user_choice_1_iter74)&&(user_choice_1_iter74<4)", "(0<=user_choice_2_iter74)&&(user_choice_2_iter74<4)", "user_choice_1_iter74==0", "user_choice_2_iter74==-2147483647"],
+      "num_constraints": 4,
+      "execution_time_ms": 360
+    },
+    {
+      "path_id": 75,
+      "inputs": {"user_choice_1": 0, "user_choice_2": -2147483647},
+      "constraints": ["(0<=user_choice_1_iter75)&&(user_choice_1_iter75<4)", "(0<=user_choice_2_iter75)&&(user_choice_2_iter75<4)", "user_choice_1_iter75==0", "user_choice_2_iter75==-2147483647"],
+      "num_constraints": 4,
+      "execution_time_ms": 447
+    },
+    {
+      "path_id": 76,
+      "inputs": {"user_choice_1": 0, "user_choice_2": -2147483647},
+      "constraints": ["(0<=user_choice_1_iter76)&&(user_choice_1_iter76<4)", "(0<=user_choice_2_iter76)&&(user_choice_2_iter76<4)", "user_choice_1_iter76==0", "user_choice_2_iter76==-2147483647"],
+      "num_constraints": 4,
+      "execution_time_ms": 288
+    },
+    {
+      "path_id": 77,
+      "inputs": {"user_choice_1": 0, "user_choice_2": -2147483647},
+      "constraints": ["(0<=user_choice_1_iter77)&&(user_choice_1_iter77<4)", "(0<=user_choice_2_iter77)&&(user_choice_2_iter77<4)", "user_choice_1_iter77==0", "user_choice_2_iter77==-2147483647"],
+      "num_constraints": 4,
+      "execution_time_ms": 387
+    },
+    {
+      "path_id": 78,
+      "inputs": {"user_choice_1": 0, "user_choice_2": -2147483647},
+      "constraints": ["(0<=user_choice_1_iter78)&&(user_choice_1_iter78<4)", "(0<=user_choice_2_iter78)&&(user_choice_2_iter78<4)", "user_choice_1_iter78==0", "user_choice_2_iter78==-2147483647"],
+      "num_constraints": 4,
+      "execution_time_ms": 338
+    },
+    {
+      "path_id": 79,
+      "inputs": {"user_choice_1": 0, "user_choice_2": -2147483647},
+      "constraints": ["(0<=user_choice_1_iter79)&&(user_choice_1_iter79<4)", "(0<=user_choice_2_iter79)&&(user_choice_2_iter79<4)", "user_choice_1_iter79==0", "user_choice_2_iter79==-2147483647"],
+      "num_constraints": 4,
+      "execution_time_ms": 1160
+    },
+    {
+      "path_id": 80,
+      "inputs": {"user_choice_1": 0, "user_choice_2": -2147483647},
+      "constraints": ["(0<=user_choice_1_iter80)&&(user_choice_1_iter80<4)", "(0<=user_choice_2_iter80)&&(user_choice_2_iter80<4)", "user_choice_1_iter80==0", "user_choice_2_iter80==-2147483647"],
+      "num_constraints": 4,
+      "execution_time_ms": 351
+    },
+    {
+      "path_id": 81,
+      "inputs": {"user_choice_1": 0, "user_choice_2": -2147483647},
+      "constraints": ["(0<=user_choice_1_iter81)&&(user_choice_1_iter81<4)", "(0<=user_choice_2_iter81)&&(user_choice_2_iter81<4)", "user_choice_1_iter81==0", "user_choice_2_iter81==-2147483647"],
+      "num_constraints": 4,
+      "execution_time_ms": 275
+    },
+    {
+      "path_id": 82,
+      "inputs": {"user_choice_1": 0, "user_choice_2": -2147483647},
+      "constraints": ["(0<=user_choice_1_iter82)&&(user_choice_1_iter82<4)", "(0<=user_choice_2_iter82)&&(user_choice_2_iter82<4)", "user_choice_1_iter82==0", "user_choice_2_iter82==-2147483647"],
+      "num_constraints": 4,
+      "execution_time_ms": 268
+    },
+    {
+      "path_id": 83,
+      "inputs": {"user_choice_1": 0, "user_choice_2": -2147483647},
+      "constraints": ["(0<=user_choice_1_iter83)&&(user_choice_1_iter83<4)", "(0<=user_choice_2_iter83)&&(user_choice_2_iter83<4)", "user_choice_1_iter83==0", "user_choice_2_iter83==-2147483647"],
+      "num_constraints": 4,
+      "execution_time_ms": 338
+    },
+    {
+      "path_id": 84,
+      "inputs": {"user_choice_1": 0, "user_choice_2": -2147483647},
+      "constraints": ["(0<=user_choice_1_iter84)&&(user_choice_1_iter84<4)", "(0<=user_choice_2_iter84)&&(user_choice_2_iter84<4)", "user_choice_1_iter84==0", "user_choice_2_iter84==-2147483647"],
+      "num_constraints": 4,
+      "execution_time_ms": 279
+    },
+    {
+      "path_id": 85,
+      "inputs": {"user_choice_1": 0, "user_choice_2": -2147483647},
+      "constraints": ["(0<=user_choice_1_iter85)&&(user_choice_1_iter85<4)", "(0<=user_choice_2_iter85)&&(user_choice_2_iter85<4)", "user_choice_1_iter85==0", "user_choice_2_iter85==-2147483647"],
+      "num_constraints": 4,
+      "execution_time_ms": 274
+    },
+    {
+      "path_id": 86,
+      "inputs": {"user_choice_1": 0, "user_choice_2": -2147483647},
+      "constraints": ["(0<=user_choice_1_iter86)&&(user_choice_1_iter86<4)", "(0<=user_choice_2_iter86)&&(user_choice_2_iter86<4)", "user_choice_1_iter86==0", "user_choice_2_iter86==-2147483647"],
+      "num_constraints": 4,
+      "execution_time_ms": 190
+    },
+    {
+      "path_id": 87,
+      "inputs": {"user_choice_1": 0, "user_choice_2": -2147483647},
+      "constraints": ["(0<=user_choice_1_iter87)&&(user_choice_1_iter87<4)", "(0<=user_choice_2_iter87)&&(user_choice_2_iter87<4)", "user_choice_1_iter87==0", "user_choice_2_iter87==-2147483647"],
+      "num_constraints": 4,
+      "execution_time_ms": 221
+    },
+    {
+      "path_id": 88,
+      "inputs": {"user_choice_1": 0, "user_choice_2": -2147483647},
+      "constraints": ["(0<=user_choice_1_iter88)&&(user_choice_1_iter88<4)", "(0<=user_choice_2_iter88)&&(user_choice_2_iter88<4)", "user_choice_1_iter88==0", "user_choice_2_iter88==-2147483647"],
+      "num_constraints": 4,
+      "execution_time_ms": 226
+    },
+    {
+      "path_id": 89,
+      "inputs": {"user_choice_1": 0, "user_choice_2": -2147483647},
+      "constraints": ["(0<=user_choice_1_iter89)&&(user_choice_1_iter89<4)", "(0<=user_choice_2_iter89)&&(user_choice_2_iter89<4)", "user_choice_1_iter89==0", "user_choice_2_iter89==-2147483647"],
+      "num_constraints": 4,
+      "execution_time_ms": 211
+    },
+    {
+      "path_id": 90,
+      "inputs": {"user_choice_1": 0, "user_choice_2": -2147483647},
+      "constraints": ["(0<=user_choice_1_iter90)&&(user_choice_1_iter90<4)", "(0<=user_choice_2_iter90)&&(user_choice_2_iter90<4)", "user_choice_1_iter90==0", "user_choice_2_iter90==-2147483647"],
+      "num_constraints": 4,
+      "execution_time_ms": 193
+    },
+    {
+      "path_id": 91,
+      "inputs": {"user_choice_1": 0, "user_choice_2": -2147483647},
+      "constraints": ["(0<=user_choice_1_iter91)&&(user_choice_1_iter91<4)", "(0<=user_choice_2_iter91)&&(user_choice_2_iter91<4)", "user_choice_1_iter91==0", "user_choice_2_iter91==-2147483647"],
+      "num_constraints": 4,
+      "execution_time_ms": 193
+    },
+    {
+      "path_id": 92,
+      "inputs": {"user_choice_1": 0, "user_choice_2": -2147483647},
+      "constraints": ["(0<=user_choice_1_iter92)&&(user_choice_1_iter92<4)", "(0<=user_choice_2_iter92)&&(user_choice_2_iter92<4)", "user_choice_1_iter92==0", "user_choice_2_iter92==-2147483647"],
+      "num_constraints": 4,
+      "execution_time_ms": 207
+    },
+    {
+      "path_id": 93,
+      "inputs": {"user_choice_1": 0, "user_choice_2": -2147483647},
+      "constraints": ["(0<=user_choice_1_iter93)&&(user_choice_1_iter93<4)", "(0<=user_choice_2_iter93)&&(user_choice_2_iter93<4)", "user_choice_1_iter93==0", "user_choice_2_iter93==-2147483647"],
+      "num_constraints": 4,
+      "execution_time_ms": 286
+    },
+    {
+      "path_id": 94,
+      "inputs": {"user_choice_1": 0, "user_choice_2": -2147483647},
+      "constraints": ["(0<=user_choice_1_iter94)&&(user_choice_1_iter94<4)", "(0<=user_choice_2_iter94)&&(user_choice_2_iter94<4)", "user_choice_1_iter94==0", "user_choice_2_iter94==-2147483647"],
+      "num_constraints": 4,
+      "execution_time_ms": 208
+    },
+    {
+      "path_id": 95,
+      "inputs": {"user_choice_1": 0, "user_choice_2": -2147483647},
+      "constraints": ["(0<=user_choice_1_iter95)&&(user_choice_1_iter95<4)", "(0<=user_choice_2_iter95)&&(user_choice_2_iter95<4)", "user_choice_1_iter95==0", "user_choice_2_iter95==-2147483647"],
+      "num_constraints": 4,
+      "execution_time_ms": 272
+    },
+    {
+      "path_id": 96,
+      "inputs": {"user_choice_1": 0, "user_choice_2": -2147483648},
+      "constraints": ["(0<=user_choice_1_iter96)&&(user_choice_1_iter96<4)", "(0<=user_choice_2_iter96)&&(user_choice_2_iter96<4)", "user_choice_1_iter96==0", "user_choice_2_iter96==-2147483648"],
+      "num_constraints": 4,
+      "execution_time_ms": 250
+    },
+    {
+      "path_id": 97,
+      "inputs": {"user_choice_1": 0, "user_choice_2": -2147483648},
+      "constraints": ["(0<=user_choice_1_iter97)&&(user_choice_1_iter97<4)", "(0<=user_choice_2_iter97)&&(user_choice_2_iter97<4)", "user_choice_1_iter97==0", "user_choice_2_iter97==-2147483648"],
+      "num_constraints": 4,
+      "execution_time_ms": 252
+    },
+    {
+      "path_id": 98,
+      "inputs": {"user_choice_1": 0, "user_choice_2": -2147483648},
+      "constraints": ["(0<=user_choice_1_iter98)&&(user_choice_1_iter98<4)", "(0<=user_choice_2_iter98)&&(user_choice_2_iter98<4)", "user_choice_1_iter98==0", "user_choice_2_iter98==-2147483648"],
+      "num_constraints": 4,
+      "execution_time_ms": 324
+    },
+    {
+      "path_id": 99,
+      "inputs": {"user_choice_1": 0, "user_choice_2": -2147483648},
+      "constraints": ["(0<=user_choice_1_iter99)&&(user_choice_1_iter99<4)", "(0<=user_choice_2_iter99)&&(user_choice_2_iter99<4)", "user_choice_1_iter99==0", "user_choice_2_iter99==-2147483648"],
+      "num_constraints": 4,
+      "execution_time_ms": 637
     }
   ]
 }

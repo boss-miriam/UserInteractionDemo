@@ -41,6 +41,52 @@ FORCE_REBUILD=false
 EXTERNAL_PATH="/home/anne/CocoPath/Amalthea-acset"  # <-- MODIFY THIS for your PC
 INTERACTIVE_MODE=true
 
+# ============================================================================
+# JAVA VERSION CONFIGURATION
+# ============================================================================
+# Set JAVA_HOME to use a specific Java version. The script requires Java 17+
+# Modify this to point to your Java 17 installation, or leave empty to use
+# the system default. Common locations:
+#   /usr/lib/jvm/java-17-openjdk
+#   /usr/lib/jvm/java-17-openjdk-amd64
+#   /opt/java/openjdk-17
+#   $JAVA_HOME (uses system JAVA_HOME if set)
+#
+# If you have multiple Java versions, explicitly set it here:
+JAVA_HOME_OVERRIDE=""  # <-- Set to Java 17 path if needed
+
+# Auto-detect Java 17 if not explicitly set
+if [ -z "$JAVA_HOME_OVERRIDE" ]; then
+    # Try to find Java 17 in common locations
+    for java_path in \
+        "/usr/lib/jvm/java-17-openjdk-amd64" \
+        "/usr/lib/jvm/java-17-openjdk" \
+        "/usr/libexec/java_home -v 17" \
+        "/opt/java/openjdk-17" \
+        "$JAVA_HOME"; do
+        if [ -n "$java_path" ] && [ -x "$java_path/bin/java" ] 2>/dev/null; then
+            JAVA_HOME_OVERRIDE="$java_path"
+            break
+        fi
+    done
+fi
+
+# Set JAVA_HOME if we found a valid path
+if [ -n "$JAVA_HOME_OVERRIDE" ] && [ -x "$JAVA_HOME_OVERRIDE/bin/java" ]; then
+    export JAVA_HOME="$JAVA_HOME_OVERRIDE"
+    export PATH="$JAVA_HOME/bin:$PATH"
+    JAVA_VERSION=$("$JAVA_HOME/bin/java" -version 2>&1 | grep -oP 'version "\K[^"]*' || echo "unknown")
+    echo "Using Java: $JAVA_VERSION from $JAVA_HOME"
+    echo ""
+else
+    # Use system default
+    JAVA_VERSION=$(java -version 2>&1 | grep -oP 'version "\K[^"]*' || echo "unknown")
+    echo "Using system Java: $JAVA_VERSION"
+    echo ""
+fi
+
+
+
 # Parse arguments
 while [[ $# -gt 0 ]]; do
     case $1 in
