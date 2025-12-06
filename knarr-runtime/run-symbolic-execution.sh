@@ -15,6 +15,7 @@
 #   ./run-symbolic-execution.sh --internal    # Single-variable mode (5 paths, simplified)
 #   ./run-symbolic-execution.sh --external    # Single-variable mode (5 paths, full Vitruvius)
 #   ./run-symbolic-execution.sh --multivar    # Multi-variable mode (25 paths, full Vitruvius)
+#   ./run-symbolic-execution.sh --force-rebuild  # Force rebuild of Amalthea-acset even if sources unchanged
 #
 # ============================================================================
 # CONFIGURATION - Modify this section for your PC
@@ -36,7 +37,8 @@ set -e
 
 USE_EXTERNAL=false
 USE_MULTIVAR=false
-EXTERNAL_PATH="C:/Users/10239/Amathea-acset"  # <-- MODIFY THIS for your PC
+FORCE_REBUILD=false
+EXTERNAL_PATH="/home/anne/CocoPath/Amalthea-acset"  # <-- MODIFY THIS for your PC
 INTERACTIVE_MODE=true
 
 # Parse arguments
@@ -58,13 +60,17 @@ while [[ $# -gt 0 ]]; do
             INTERACTIVE_MODE=false
             shift
             ;;
+        --force-rebuild|-f)
+            FORCE_REBUILD=true
+            shift
+            ;;
         --external-path)
             EXTERNAL_PATH="$2"
             shift 2
             ;;
         *)
             echo "Unknown option: $1"
-            echo "Usage: $0 [--internal|--external|--multivar] [--external-path PATH]"
+            echo "Usage: $0 [--internal|--external|--multivar] [--external-path PATH] [--force-rebuild]"
             exit 1
             ;;
     esac
@@ -129,6 +135,40 @@ echo ""
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 cd "$SCRIPT_DIR"
 
+# Function to check if sources in a directory have been modified since last build
+check_sources_changed() {
+    local src_dir="$1"
+    local target_dir="$src_dir/target"
+    
+    if [ ! -d "$target_dir" ]; then
+        # No target directory means it hasn't been built yet
+        return 0  # Sources "changed" (first build)
+    fi
+    
+    # Get the most recent modification time of target directory
+    local target_mtime=$(stat -f%m "$target_dir" 2>/dev/null || stat -c%Y "$target_dir" 2>/dev/null || echo 0)
+    
+    # Get the most recent modification time in src directory
+    local src_mtime=$(find "$src_dir/src" -type f 2>/dev/null -printf '%T@\n' | sort -rn | head -1 || echo 0)
+    
+    # Also check pom.xml
+    local pom_mtime=$(stat -f%m "$src_dir/pom.xml" 2>/dev/null || stat -c%Y "$src_dir/pom.xml" 2>/dev/null || echo 0)
+    pom_mtime=${pom_mtime:-0}
+    
+    # Get the maximum of src and pom modification times
+    local max_source_mtime=$src_mtime
+    if [ "$pom_mtime" -gt "$max_source_mtime" ]; then
+        max_source_mtime=$pom_mtime
+    fi
+    
+    # If any source is newer than target, sources have changed
+    if [ "$max_source_mtime" -gt "$target_mtime" ]; then
+        return 0  # Sources have changed
+    else
+        return 1  # Sources have NOT changed
+    fi
+}
+
 if [ "$USE_EXTERNAL" = true ]; then
     echo "Mode: EXTERNAL (switching to external Amalthea-acset)"
     echo ""
@@ -140,8 +180,16 @@ if [ "$USE_EXTERNAL" = true ]; then
         exit 1
     fi
 
-    echo "[1/4] Building external Amalthea-acset at $EXTERNAL_PATH..."
-    (cd "$EXTERNAL_PATH" && mvn clean install -DskipTests -Dcheckstyle.skip=true)
+    # Check if rebuild is needed
+    if [ "$FORCE_REBUILD" = true ]; then
+        echo "[1/4] Building external Amalthea-acset (--force-rebuild flag set)..."
+        (cd "$EXTERNAL_PATH" && mvn clean install -DskipTests -Dcheckstyle.skip=true)
+    elif check_sources_changed "$EXTERNAL_PATH"; then
+        echo "[1/4] Building external Amalthea-acset (sources have changed)..."
+        (cd "$EXTERNAL_PATH" && mvn clean install -DskipTests -Dcheckstyle.skip=true)
+    else
+        echo "[1/4] Skipping external Amalthea-acset build (sources unchanged)..."
+    fi
     echo "      Done."
     echo ""
 
@@ -218,8 +266,17 @@ else
     echo "      Switched to internal dependency."
     echo ""
 
-    echo "[2/4] Building internal amalthea-acset-integration..."
-    (cd "$(dirname "$SCRIPT_DIR")/amalthea-acset-integration" && mvn clean install -DskipTests -Dcheckstyle.skip=true)
+    # Check if rebuild is needed for internal module
+    INTERNAL_DIR="$(dirname "$SCRIPT_DIR")/amalthea-acset-integration"
+    if [ "$FORCE_REBUILD" = true ]; then
+        echo "[2/4] Building internal amalthea-acset-integration (--force-rebuild flag set)..."
+        (cd "$INTERNAL_DIR" && mvn clean install -DskipTests -Dcheckstyle.skip=true)
+    elif check_sources_changed "$INTERNAL_DIR"; then
+        echo "[2/4] Building internal amalthea-acset-integration (sources have changed)..."
+        (cd "$INTERNAL_DIR" && mvn clean install -DskipTests -Dcheckstyle.skip=true)
+    else
+        echo "[2/4] Skipping internal amalthea-acset-integration build (sources unchanged)..."
+    fi
     echo "      Done."
     echo ""
 

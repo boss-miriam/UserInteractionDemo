@@ -103,8 +103,8 @@ public class AutomaticVitruvMultiVarPathExploration {
         Tag tag1 = Tainter.getTag(taggedInput1);
         Tag tag2 = Tainter.getTag(taggedInput2);
 
-        String varName1;
-        String varName2;
+        String varName1 = "";
+        String varName2 = "";
         Expression symbolicExpr1 = null;
         Expression symbolicExpr2 = null;
 
@@ -121,8 +121,7 @@ public class AutomaticVitruvMultiVarPathExploration {
                 System.out.println("  Symbolic expression: " + symbolicExpr1);
             }
         } else {
-           
-           
+
             System.out.println("No tag found for input 1");
         }
 
@@ -138,7 +137,7 @@ public class AutomaticVitruvMultiVarPathExploration {
             if (symbolicExpr2 != null) {
                 System.out.println("  Symbolic expression: " + symbolicExpr2);
             }
-        } else {         
+        } else {
             System.out.println("No tag found for input 2");
         }
 
@@ -159,12 +158,12 @@ public class AutomaticVitruvMultiVarPathExploration {
         PathUtils.resetPC();
 
         // Step 1: Add domain constraints for BOTH variables
-  
+
         PathUtils.addIntDomainConstraint(varName1, 0, 5);
         PathUtils.addIntDomainConstraint(varName2, 0, 5);
 
-        // Step 2: Record path constraints for BOTH variables 
- 
+        // Step 2: Record path constraints for BOTH variables
+
         PathUtils.addSwitchConstraint(varName1, taggedInput1);
         PathUtils.addSwitchConstraint(varName2, taggedInput2);
 
