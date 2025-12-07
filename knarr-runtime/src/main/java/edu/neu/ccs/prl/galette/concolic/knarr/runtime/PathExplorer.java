@@ -276,7 +276,8 @@ public class PathExplorer {
             Map<String, Object> taggedInputs = new HashMap<>();
             for (String varName : variableNames) {
                 Integer value = currentInputs.get(varName);
-                String label = varName + "_iter" + iteration;
+                // Keep variable label stable across iterations so solver can enumerate combinations deterministically
+                String label = varName;
                 Tag symbolicTag = GaletteSymbolicator.makeSymbolicInt(label, value);
                 int taggedValue = Tainter.setTag(value, symbolicTag);
                 taggedInputs.put(varName, taggedValue);

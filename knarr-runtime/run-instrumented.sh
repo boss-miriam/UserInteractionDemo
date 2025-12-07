@@ -73,4 +73,5 @@ set -x
   -Dgalette.coverage=true \
   -Dsymbolic.execution.debug=true \
   -Dgalette.debug=true \
+  -Dpath.explorer.max.iterations=30 \
   "$MAIN_CLASS" "$@"
