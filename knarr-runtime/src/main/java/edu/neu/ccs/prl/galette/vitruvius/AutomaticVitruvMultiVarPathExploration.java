@@ -108,6 +108,9 @@ public class AutomaticVitruvMultiVarPathExploration {
         Expression symbolicExpr1 = null;
         Expression symbolicExpr2 = null;
 
+        // test whether tags survive boxing and unboxing
+        validateTagAfterRebox(taggedInput1);
+
         if (tag1 != null && tag1.size() > 0) {
             // Tag-aware mode: extract variable name and expression from tag
             Object[] labels1 = tag1.getLabels();
@@ -138,14 +141,6 @@ public class AutomaticVitruvMultiVarPathExploration {
             }
         } else {
             System.out.println("No tag found for input 2");
-        }
-
-        // Fallback names in case tagging failed, to avoid empty constraint variables
-        if (varName1.isEmpty()) {
-            varName1 = "user_choice_1";
-        }
-        if (varName2.isEmpty()) {
-            varName2 = "user_choice_2";
         }
 
         // Extract concrete values for display/directory naming
@@ -208,6 +203,24 @@ public class AutomaticVitruvMultiVarPathExploration {
         }
 
         return pc;
+    }
+
+    private static void validateTagAfterRebox(int primitiveTaggedInput) {
+        // int primitiveTaggedInput = taggedInput.intValue();
+        Tag tagAfterUnbox = Tainter.getTag(primitiveTaggedInput);
+        if (tagAfterUnbox != null && tagAfterUnbox.size() > 0) {
+            System.out.println("✓ Tag survived unboxing for input " + primitiveTaggedInput);
+        } else {
+            System.out.println("✗ Tag lost during unboxing for input " + primitiveTaggedInput);
+        }
+
+        Integer reboxedTaggedInput = Integer.valueOf(primitiveTaggedInput);
+        Tag tagAfterRebox = Tainter.getTag(reboxedTaggedInput);
+        if (tagAfterRebox != null && tagAfterRebox.size() > 0) {
+            System.out.println("✓ Tag survived reboxing for input " + primitiveTaggedInput);
+        } else {
+            System.out.println("✗ Tag lost during reboxing for input " + primitiveTaggedInput);
+        }
     }
 
     /**
