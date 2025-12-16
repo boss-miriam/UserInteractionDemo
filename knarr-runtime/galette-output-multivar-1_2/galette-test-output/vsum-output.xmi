@@ -5,7 +5,7 @@
     <tasks name="task2"/>
   </model2:ComponentContainer>
   <model:AscetModule>
-    <tasks xsi:type="model:PeriodicTask" name="task1"/>
+    <tasks xsi:type="model:PeriodicTask" name="task1" period="1.0" delay="0.1"/>
     <tasks xsi:type="model:SoftwareTask" name="task2"/>
   </model:AscetModule>
 </xmi:XMI>

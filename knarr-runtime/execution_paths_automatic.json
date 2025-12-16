@@ -8,7 +8,7 @@
       "(0<=user_choice)&&(user_choice<5)",
       "user_choice==0"
     ],
-    "executionTime": 699
+    "executionTime": 1381
   },
   {
     "pathId": 2,
@@ -19,7 +19,7 @@
       "(0<=user_choice)&&(user_choice<5)",
       "user_choice==1"
     ],
-    "executionTime": 27
+    "executionTime": 46
   },
   {
     "pathId": 3,
@@ -30,7 +30,7 @@
       "(0<=user_choice)&&(user_choice<5)",
       "user_choice==2"
     ],
-    "executionTime": 20
+    "executionTime": 30
   },
   {
     "pathId": 4,
@@ -41,7 +41,7 @@
       "(0<=user_choice)&&(user_choice<5)",
       "user_choice==3"
     ],
-    "executionTime": 20
+    "executionTime": 29
   },
   {
     "pathId": 5,
@@ -52,6 +52,6 @@
       "(0<=user_choice)&&(user_choice<5)",
       "user_choice==4"
     ],
-    "executionTime": 17
+    "executionTime": 24
   }
 ]
