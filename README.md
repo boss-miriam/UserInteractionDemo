@@ -160,6 +160,33 @@ amalthea-acset-integration/                    # Vitruvius example
 3. **Python 3.x** (for dependency switching)
 
 
+### Syncing Generated Reactions (After Upstream Changes)
+
+When the upstream Amalthea-acset project changes (e.g., renaming InterruptTask to InitTask), you need to sync the generated reactions code:
+
+```bash
+# 1. Build external Amalthea-acset to generate new reactions
+cd /path/to/Amalthea-acset
+mvn clean generate-sources
+
+# 2. Copy generated reactions to internal project
+cd knarr-runtime
+./copy-generated-reactions.sh
+
+# Or with custom paths:
+./copy-generated-reactions.sh --external-path /path/to/Amalthea-acset
+
+# 3. Build internal project with updated reactions
+cd ../amalthea-acset-integration
+mvn clean compile -Dcheckstyle.skip=true
+```
+
+The `copy-generated-reactions.sh` script:
+- Copies generated reactions from `Amalthea-acset/consistency/target/generated-sources/reactions/mir/`
+- To `amalthea-acset-integration/consistency/src/main/java/mir/`
+- Creates backups of existing files
+- Supports custom paths with `--external-path` and `--internal-path` flags
+
 ### Quick Start
 
 ```bash

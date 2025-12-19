@@ -4,6 +4,6 @@
     <tasks name="specialname"/>
   </model2:ComponentContainer>
   <model:AscetModule>
-    <tasks xsi:type="model:SoftwareTask" name="task1"/>
+    <tasks xsi:type="model:PeriodicTask" name="specialname"/>
   </model:AscetModule>
 </xmi:XMI>
