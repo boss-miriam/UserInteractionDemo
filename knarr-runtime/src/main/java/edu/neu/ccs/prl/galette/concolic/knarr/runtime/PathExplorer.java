@@ -1,7 +1,6 @@
 package edu.neu.ccs.prl.galette.concolic.knarr.runtime;
 
 import edu.neu.ccs.prl.galette.internal.runtime.Tag;
-import edu.neu.ccs.prl.galette.internal.runtime.Tainter;
 import java.util.*;
 import za.ac.sun.cs.green.expr.BinaryOperation;
 import za.ac.sun.cs.green.expr.Expression;
@@ -269,9 +268,8 @@ public class PathExplorer {
         return new ArrayList<>(exploredPaths);
     }
 
-    public List<PathRecord> exploreMultipleIntegers(
-            List<String> variableNames, List<Integer> initialValues, MultiVarPathExecutor executor) {
-        return exploreMultipleIntegers(variableNames, initialValues, executor, null);
+    public List<PathRecord> exploreMultipleIntegers(List<Integer> initialValues, MultiVarPathExecutor executor) {
+        return exploreMultipleIntegers(initialValues, executor, null);
     }
 
     /**
@@ -279,22 +277,14 @@ public class PathExplorer {
      *
      * This method systematically explores all combinations of values for multiple
      * symbolic variables by using constraint solving to generate inputs.
+     * Variable names are extracted from tags created by reactions.
      *
-     * @param variableNames Ordered list of variable names
-     * @param initialValues Initial concrete values for each variable (same order)
+     * @param initialValues Initial concrete values for each variable
      * @param executor Execution function that takes a map of variable -> value
      * @return List of explored paths
      */
     public List<PathRecord> exploreMultipleIntegers(
-            List<String> variableNames,
-            List<Integer> initialValues,
-            MultiVarPathExecutor executor,
-            String qualifiedName) {
-
-        if (variableNames.size() != initialValues.size()) {
-            throw new IllegalArgumentException(
-                    "[PathExplorer:exploreMultipleIntegers] Variable names and initial values must have the same size");
-        }
+            List<Integer> initialValues, MultiVarPathExecutor executor, String qualifiedName) {
 
         exploredPaths.clear();
         exploredConstraintSignatures.clear();
@@ -302,7 +292,7 @@ public class PathExplorer {
         domainConstraint = null;
         negationsPerVariable.clear();
 
-        int numVars = variableNames.size();
+        int numVars = initialValues.size();
 
         // Initialize negations list for each variable
         for (int i = 0; i < numVars; i++) {
@@ -310,62 +300,60 @@ public class PathExplorer {
         }
 
         int iteration = 0;
-        Map<String, Integer> currentInputs = new HashMap<>();
-        for (int i = 0; i < numVars; i++) {
-            currentInputs.put(variableNames.get(i), initialValues.get(i));
-        }
+        List<Integer> currentInputsList = new ArrayList<>(initialValues);
 
-        while (currentInputs != null && iteration < MAX_ITERATIONS) {
+        while (currentInputsList != null && iteration < MAX_ITERATIONS) {
             if (DEBUG) {
                 System.out.println(
-                        "\n [PathExplorer:exploreMultipleIntegers] === Iteration " + (iteration + 1) + " ===");
+                        "\n[PathExplorer:exploreMultipleIntegers] === Iteration " + (iteration + 1) + " ===");
+                for (int i = 0; i < currentInputsList.size(); i++) {
+                    System.out.println("  Input " + i + " = " + currentInputsList.get(i));
+                }
+            }
+
+            // Reset path condition but NOT the symbolicator
+            // We need to preserve labelToTag mappings for tag reuse
+            PathUtils.resetPC();
+
+            // Create map with indexed keys for now - will be replaced with actual variable names after execution
+            Map<String, Object> inputsForExecution = new HashMap<>();
+            for (int i = 0; i < currentInputsList.size(); i++) {
+                inputsForExecution.put("var_" + i, currentInputsList.get(i));
+            }
+
+            // Execute and collect constraints
+            // The reactions will create and apply tags as needed
+            long startTime = System.currentTimeMillis();
+            PathConditionWrapper pc = executor.execute(inputsForExecution);
+            long endTime = System.currentTimeMillis();
+
+            // Extract variable names from tags after execution
+            List<String> variableNames = new ArrayList<>();
+            Map<String, Integer> currentInputs = new HashMap<>();
+            for (int i = 0; i < currentInputsList.size(); i++) {
+                Integer value = currentInputsList.get(i);
+                String varName = extractTagFromValue(value);
+                if (varName == null) {
+                    // Fallback if no tag found
+                    varName = "var_" + i;
+                }
+                variableNames.add(varName);
+                currentInputs.put(varName, value);
+            }
+
+            if (DEBUG) {
+                System.out.println("[PathExplorer:exploreMultipleIntegers] Extracted variable names from tags:");
                 for (String varName : variableNames) {
                     System.out.println("  " + varName + " = " + currentInputs.get(varName));
                 }
             }
-
-            // Reset symbolic execution state
-            GaletteSymbolicator.reset();
-            PathUtils.resetPC();
-
-            // Create symbolic values for ALL variables
-            Map<String, Object> taggedInputs = new HashMap<>();
-            Map<String, Tag> varToTag = new HashMap<>();
-
-            for (String varName : variableNames) {
-                Integer value = currentInputs.get(varName);
-                // Keep variable label stable across iterations so solver can enumerate combinations deterministically
-                String label = varName;
-                Tag symbolicTag = GaletteSymbolicator.makeSymbolicInt(label, value);
-                int taggedValue = Tainter.setTag(value, symbolicTag);
-
-                // Use Integer.valueOf to preserve tag during boxing
-                Integer taggedInteger = Integer.valueOf(taggedValue);
-
-                // Store mapping for this variable
-                varToTag.put(varName, symbolicTag);
-                taggedInputs.put(varName, taggedInteger);
-
-                if (DEBUG) {
-                    System.out.println("[PathExplorer:exploreMultipleIntegers] Created symbolic value for " + varName
-                            + ": label=" + label + ", value=" + value + ", tag=" + symbolicTag);
-                }
-            }
-
-            // Store in ThreadLocal for executor to access
-            currentVarToTag.set(varToTag);
-
-            // Execute and collect constraints
-            long startTime = System.currentTimeMillis();
-            PathConditionWrapper pc = executor.execute(taggedInputs);
-            long endTime = System.currentTimeMillis();
 
             if (pc == null || pc.isEmpty()) {
                 if (DEBUG) System.out.println("No constraints collected - concrete execution");
                 Map<String, Object> inputs = new HashMap<>(currentInputs);
                 exploredPaths.add(new PathRecord(iteration, inputs, new ArrayList<>(), endTime - startTime));
                 // Try incrementing first variable
-                currentInputs = incrementInputs(currentInputs, variableNames);
+                currentInputsList = incrementInputsList(currentInputsList);
                 iteration++;
                 continue;
             }
@@ -396,9 +384,9 @@ public class PathExplorer {
             }
 
             // Generate next input combination
-            currentInputs = generateNextMultiVarInput(constraints, variableNames, numVars);
+            currentInputsList = generateNextMultiVarInputList(constraints, variableNames, numVars);
 
-            if (currentInputs == null) {
+            if (currentInputsList == null) {
                 if (DEBUG) System.out.println("No more satisfiable inputs - terminating exploration");
                 break;
             }
@@ -450,6 +438,40 @@ public class PathExplorer {
                 }
             }
         }
+    }
+
+    /**
+     * Helper method to increment a list of inputs for simple exploration fallback
+     */
+    private List<Integer> incrementInputsList(List<Integer> inputs) {
+        if (inputs == null || inputs.isEmpty()) {
+            return null;
+        }
+        List<Integer> newInputs = new ArrayList<>(inputs);
+        newInputs.set(0, newInputs.get(0) + 1);
+        return newInputs;
+    }
+
+    /**
+     * Generate next multi-variable input as a list instead of a map.
+     * This allows us to work without knowing variable names upfront.
+     */
+    private List<Integer> generateNextMultiVarInputList(
+            List<Expression> currentConstraints, List<String> variableNames, int numVars) {
+
+        Map<String, Integer> resultMap = generateNextMultiVarInput(currentConstraints, variableNames, numVars);
+
+        if (resultMap == null) {
+            return null;
+        }
+
+        // Convert map back to list in same order as variableNames
+        List<Integer> resultList = new ArrayList<>();
+        for (String varName : variableNames) {
+            resultList.add(resultMap.get(varName));
+        }
+
+        return resultList;
     }
 
     /**
@@ -625,22 +647,6 @@ public class PathExplorer {
         }
 
         return nextInputs;
-    }
-
-    private Map<String, Integer> incrementInputs(Map<String, Integer> current, List<String> variableNames) {
-        if (variableNames.isEmpty()) {
-            return null;
-        }
-
-        Map<String, Integer> next = new HashMap<>(current);
-        String firstVar = variableNames.get(0);
-        Integer val = next.get(firstVar);
-        if (val == null) {
-            return null;
-        }
-
-        next.put(firstVar, val + 1);
-        return next;
     }
 
     /**

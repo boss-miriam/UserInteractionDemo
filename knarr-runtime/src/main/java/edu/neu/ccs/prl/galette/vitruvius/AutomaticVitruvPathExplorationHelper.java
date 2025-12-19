@@ -192,14 +192,20 @@ public class AutomaticVitruvPathExplorationHelper {
 
     /**
      * Export multi-variable path exploration results to JSON.
+     * Variable names are extracted from the path records.
      *
      * @param paths List of explored paths
      * @param filename Output filename
-     * @param variableNames Names of variables explored
      */
-    public static void exportMultiVarResults(
-            List<PathExplorer.PathRecord> paths, String filename, List<String> variableNames) {
+    public static void exportMultiVarResults(List<PathExplorer.PathRecord> paths, String filename) {
         try {
+            // Extract variable names from the first path record
+            List<String> variableNames = new java.util.ArrayList<>();
+            if (!paths.isEmpty() && paths.get(0).inputs != null) {
+                variableNames.addAll(paths.get(0).inputs.keySet());
+                java.util.Collections.sort(variableNames); // Sort for consistent ordering
+            }
+
             StringBuilder json = new StringBuilder();
             json.append("{\n");
             json.append("  \"total_paths\": ").append(paths.size()).append(",\n");

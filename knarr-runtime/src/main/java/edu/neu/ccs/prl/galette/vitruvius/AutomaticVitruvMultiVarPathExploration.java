@@ -37,9 +37,6 @@ public class AutomaticVitruvMultiVarPathExploration {
             // Setup path explorer
             PathExplorer explorer = new PathExplorer();
 
-            // Variable names for two user choices
-            List<String> variableNames = Arrays.asList("user_choice_1", "user_choice_2");
-
             // Initial values (start with 0, 0)
             List<Integer> initialValues = Arrays.asList(0, 0);
 
@@ -47,10 +44,9 @@ public class AutomaticVitruvMultiVarPathExploration {
             System.out.println(
                     "[AutomaticVitruvMultiVarPathExploration:main] Starting multi-variable path exploration...");
 
-            List<PathExplorer.PathRecord> paths =
-                    explorer.exploreMultipleIntegers(variableNames, initialValues, inputs -> {
-                        return executeVitruvWithTwoInputs(testInstance, inputs, variableNames);
-                    });
+            List<PathExplorer.PathRecord> paths = explorer.exploreMultipleIntegers(initialValues, inputs -> {
+                return executeVitruvWithTwoInputs(testInstance, inputs);
+            });
 
             // Display results
             System.out.println("\n[AutomaticVitruvMultiVarPathExploration:main] Results");
@@ -61,9 +57,8 @@ public class AutomaticVitruvMultiVarPathExploration {
                 System.out.println(path);
             }
 
-            // Save results to JSON
-            AutomaticVitruvPathExplorationHelper.exportMultiVarResults(
-                    paths, "execution_paths_multivar.json", variableNames);
+            // Save results to JSON (variable names will be extracted from path records)
+            AutomaticVitruvPathExplorationHelper.exportMultiVarResults(paths, "execution_paths_multivar.json");
 
             System.out.println("\n[AutomaticVitruvMultiVarPathExploration:main] Complete ");
             System.out.println(
@@ -82,24 +77,29 @@ public class AutomaticVitruvMultiVarPathExploration {
      * Execute Vitruvius transformation with TWO user inputs.
      *
      * This method:
-     * 1. Adds domain constraints for both variables
-     * 2. Invokes insertTwoTasks() method with both inputs
-     * 3. Records path constraints for both variables
-     * 4. Returns collected constraints
+     * 1. Invokes insertTwoTasks() method with both inputs
+     * 2. The reactions will create tags and record constraints
+     * 3. Returns collected constraints
      *
      * @param testInstance Instance of Test class
-     * @param inputs Map containing user_choice_1 and user_choice_2
-     * @param variableNames List of variable names (for constraint generation)
+     * @param inputs Map containing the two input values
      * @return Path condition with all collected constraints
      */
-    private static PathConditionWrapper executeVitruvWithTwoInputs(
-            Object testInstance, Map<String, Object> inputs, List<String> variableNames) {
-        // Get the TAGGED values (preserve symbolic tags for constraint collection)
-        Integer taggedInput1 = (Integer) inputs.get(variableNames.get(0));
-        Integer taggedInput2 = (Integer) inputs.get(variableNames.get(1));
+    private static PathConditionWrapper executeVitruvWithTwoInputs(Object testInstance, Map<String, Object> inputs) {
+        // Extract the two input values from the map
+        // PathExplorer passes them with keys like "var_0", "var_1" initially
+        List<Integer> valuesList = new ArrayList<>();
+        for (Object value : inputs.values()) {
+            valuesList.add((Integer) value);
+        }
 
-        if (taggedInput1 == null) taggedInput1 = 0;
-        if (taggedInput2 == null) taggedInput2 = 0;
+        // If we have the expected 2 values
+        while (valuesList.size() < 2) {
+            valuesList.add(0);
+        }
+
+        Integer taggedInput1 = valuesList.get(0);
+        Integer taggedInput2 = valuesList.get(1);
 
         // Tags are already attached to inputs from PathExplorer
         // The reactions will handle all symbolic execution concerns
