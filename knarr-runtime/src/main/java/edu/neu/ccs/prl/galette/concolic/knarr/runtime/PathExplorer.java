@@ -204,7 +204,7 @@ public class PathExplorer {
         }
 
         // Solve the combined constraint
-        InputSolution solution = ConstraintSolver.solveConstraint(combinedConstraint);
+        InputSolution solution = Z3ConstraintSolver.solveConstraintWithZ3(combinedConstraint);
 
         if (solution == null || !solution.isSatisfiable()) {
             if (DEBUG)
@@ -698,7 +698,7 @@ public class PathExplorer {
         }
 
         // Solve the combined constraint
-        InputSolution solution = ConstraintSolver.solveConstraint(combinedConstraint);
+        InputSolution solution = Z3ConstraintSolver.solveConstraintWithZ3(combinedConstraint);
 
         if (solution == null || !solution.isSatisfiable()) {
             if (DEBUG)
@@ -761,7 +761,7 @@ public class PathExplorer {
         }
 
         // Solve the combined constraint
-        InputSolution solution = ConstraintSolver.solveConstraint(combinedConstraint);
+        InputSolution solution = Z3ConstraintSolver.solveConstraintWithZ3(combinedConstraint);
 
         if (solution == null || !solution.isSatisfiable()) {
             if (DEBUG) System.out.println("UNSAT");
