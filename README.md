@@ -88,10 +88,38 @@ CocoPath/
 
 ### Prerequisites
 
-1. **Java 17** (OpenJDK recommended)
+1. **Java 17** (OpenJDK recommended for building, supports Java 8-21 at runtime)
 2. **Maven 3.6+**
 3. **Python 3.x** (for dependency management scripts)
-4. **Z3 Solver** (automatically configured)
+4. **Z3 Solver** (included via z3-turnkey dependency)
+5. **Git** (for cloning external dependencies)
+
+### Initial Setup
+
+#### 1. Clone and Build External Dependencies
+```bash
+# Clone the external Amalthea-ASCET repository (required for Vitruvius)
+cd /home/anne/CocoPath
+git clone https://github.com/IngridJiang/Amalthea-acset.git
+
+# Build it to populate Maven repository
+cd Amalthea-acset
+mvn clean install -DskipTests -Dcheckstyle.skip=true
+```
+
+#### 2. Build CoCoPath
+```bash
+cd /home/anne/CocoPath/CocoPath
+mvn clean install -DskipTests -Dcheckstyle.skip=true
+```
+
+#### 3. Generate Instrumented Java VM
+```bash
+cd knarr-runtime
+mvn process-test-resources
+```
+
+**Important**: The instrumented Java VM at `target/galette/java/` is required for dynamic taint tracking.
 
 ### Quick Start
 
@@ -199,6 +227,92 @@ This enables engineers to:
 - Compare transformation outcomes quantitatively
 - Identify high-impact decision points
 - Understand consequences before committing changes
+
+## Troubleshooting
+
+### Common Build Issues and Solutions
+
+#### 1. Instrumented Java VM Issues
+
+**Problem**: "Instrumented java not found at target/galette/java/bin/java"
+```bash
+# Solution: Force regeneration of instrumented Java
+cd knarr-runtime
+rm -rf target/galette/
+mvn clean process-test-resources
+```
+
+**Problem**: "Existing Java installation did not have correct settings"
+- This occurs when the instrumented Java was built with different settings
+- The Galette Maven plugin will automatically delete and recreate it
+
+#### 2. Maven Cache Issues
+
+**Problem**: Conflicting dependency versions or stale artifacts
+```bash
+# Solution 1: Clean local Maven cache for the project
+rm -rf ~/.m2/repository/edu/neu/ccs/prl/galette/
+rm -rf ~/.m2/repository/tools/vitruv/methodologisttemplate/
+
+# Solution 2: Force update dependencies
+mvn clean install -U -DskipTests
+```
+
+#### 3. External Amalthea-acset Build Failures
+
+**Problem**: Missing CreateInterruptTaskRoutine or compilation errors
+```bash
+# Solution: Regenerate reactions from scratch
+cd /home/anne/CocoPath/Amalthea-acset
+mvn clean generate-sources
+mvn install -DskipTests -Dcheckstyle.skip=true
+
+# Then copy to internal project
+cd /home/anne/CocoPath/CocoPath/knarr-runtime
+./copy-generated-reactions.sh --external-path /home/anne/CocoPath/Amalthea-acset
+```
+
+#### 4. Z3 Library Loading Issues
+
+**Problem**: UnsatisfiedLinkError for Z3 native library
+- The z3-turnkey dependency should handle this automatically
+- If issues persist, verify Z3 native libs are present:
+```bash
+ls ~/.m2/repository/tools/aqua/z3-turnkey/4.12.2.1/
+# Should contain native libraries for your platform
+```
+
+#### 5. Java Version Conflicts
+
+**Problem**: "var cannot be resolved to a type" or similar Java feature errors
+- Ensure JAVA_HOME points to Java 17+:
+```bash
+export JAVA_HOME=/usr/lib/jvm/java-17-openjdk-amd64
+java -version  # Should show 17.x.x
+```
+
+### Verification Steps
+
+After setup, verify everything works:
+
+```bash
+# 1. Check Java version
+java -version | grep "17"
+
+# 2. Check Galette agent exists
+ls ~/.m2/repository/edu/neu/ccs/prl/galette/galette-agent/1.0.0-SNAPSHOT/
+
+# 3. Check instrumented Java exists
+ls knarr-runtime/target/galette/java/bin/java
+
+# 4. Run simple internal test
+cd knarr-runtime
+./run-symbolic-execution.sh --internal
+
+# 5. Check output was generated
+ls execution_paths_automatic.json
+ls -d galette-output-automatic-*/
+```
 
 ## Technical Implementation
 
