@@ -28,16 +28,6 @@
             <artifactId>green</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
-
-                <!-- Z3 SMT Solver dependency for advanced constraint solving -->
-
-
-        <!-- Using tools.aqua z3-turnkey for easy cross-platform setup -->
-        <dependency>
-            <groupId>tools.aqua</groupId>
-            <artifactId>z3-turnkey</artifactId>
-            <version>4.12.2.1</version>
-        </dependency>
         
         <!-- ASM dependencies for bytecode manipulation -->
         <dependency>
@@ -67,11 +57,6 @@
         <!-- Vitruvius Amalthea-ASCET Integration -->
         <!-- Option 1: Use internal amalthea-acset-integration module (SIMPLIFIED STUB) -->
         <!-- This requires external Amalthea-acset to be built once for Vitruvius dependencies -->
-        <dependency>
-            <groupId>edu.neu.ccs.prl.galette</groupId>
-            <artifactId>amalthea-acset-consistency</artifactId>
-            <version>${project.version}</version>
-        </dependency>
         <dependency>
             <groupId>edu.neu.ccs.prl.galette</groupId>
             <artifactId>amalthea-acset-vsum</artifactId>
@@ -184,23 +169,6 @@
                     <!-- mainClass removed - now specified via -Dexec.mainClass on command line -->
                     <cleanupDaemonThreads>false</cleanupDaemonThreads>
                 </configuration>
-                <executions>
-                    <execution>
-                        <id>run-with-agent</id>
-                        <goals>
-                            <goal>exec</goal>
-                        </goals>
-                        <configuration>
-                            <executable>java</executable>
-                            <arguments>
-                                <argument>-javaagent:${settings.localRepository}/edu/neu/ccs/prl/galette/galette-agent/1.0.0-SNAPSHOT/galette-agent-1.0.0-SNAPSHOT.jar</argument>
-                                <argument>-classpath</argument>
-                                <classpath/>
-                                <argument>${exec.mainClass}</argument>
-                            </arguments>
-                        </configuration>
-                    </execution>
-                </executions>
             </plugin>
         </plugins>
     </build>

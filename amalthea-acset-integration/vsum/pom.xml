@@ -28,12 +28,6 @@
             <artifactId>amalthea-acset-consistency</artifactId>
             <version>${project.version}</version>
         </dependency>
-        <!-- Galette dependencies for symbolic execution -->
-        <dependency>
-            <groupId>edu.neu.ccs.prl.galette</groupId>
-            <artifactId>galette-agent</artifactId>
-            <version>${project.version}</version>
-        </dependency>
 
         <!-- NOTE: These dependencies must be installed from external Amalthea-acset first -->
         <!-- Run: cd C:\Users\10239\Amalthea-acset && mvn install -DskipTests -->
@@ -77,5 +71,18 @@
             <version>2.16.0</version>
         </dependency>
     </dependencies>
-
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
+                <version>3.1.0</version>
+                <configuration>
+                    <!-- mainClass removed - now specified via -Dexec.mainClass on command line -->
+                    <mainClass>tools.vitruv.methodologisttemplate.vsum.Test</mainClass>
+                    <cleanupDaemonThreads>false</cleanupDaemonThreads>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 </project>
